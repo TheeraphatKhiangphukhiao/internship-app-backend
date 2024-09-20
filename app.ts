@@ -10,7 +10,7 @@ export const app = express();
 
 app.use(
     cors({
-        origin: "https://intern-app-7a0cd.web.app",
+        origin: "http://localhost:5173",
     })
 );
 app.use(bodyParser.json());

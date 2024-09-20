@@ -53,19 +53,30 @@ router.post('/send/email', async (req, res) => {
         from: "zerostar02yi@gmail.com",
         to: email.email,
         subject: "INTERNSHIP PROGRAM",
-        text: `เรียนคุณ ${email.name}
+        text: `
+เรียนคุณ ${email.name}
 
-        จากบริษัท aaa ตอนนี้ทางบริษัทได้รับ application เรียบร้อยเเล้ว
+ขอขอบคุณที่สมัครเข้าร่วมโครงการฝึกงานกับบริษัทของเรา
 
-        ขอบคุณ ครับ/ค่ะ
+เราขอยืนยันว่าข้อมูลที่ท่านกรอกในระบบได้ถูกบันทึกเรียบร้อยแล้ว
+
+ทีมงานของเราจะติดต่อกลับไปยังท่านเพื่อแจ้งข้อมูลเพิ่มเติมเกี่ยวกับขั้นตอนถัดไป
+
+ขอบคุณครับ/ค่ะ
+
+ขอเเสดงความนับถือ
+บริษัท Internship Program
         `
     };
 
     try {
         const info = await transporter.sendMail(mailOptions);
+
         res.status(201).json({ info: info.response });
+
     } catch (error) {
-        res.status(201).json({ info: "error" });
+
+        res.status(500).json({ info: "ไม่สามารถส่ง email ได้" });
     }
 
 });
